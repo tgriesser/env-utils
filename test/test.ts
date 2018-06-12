@@ -56,6 +56,10 @@ describe("loadEnv", () => {
   it("should throw when loading the same file twice", () => {
     expect(() => loadEnv([ENV_LOCAL, ENV_LOCAL])).toThrow("loadEnv: ");
   });
+  it("should throw when no files are specified", () => {
+    expect(() => loadEnv()).toThrow("loadEnv: ");
+    expect(() => loadEnv([])).toThrow("loadEnv: ");
+  });
   it("should not throw when loading the same file twice, if reload = true", () => {
     expect(() => loadEnv([ENV_LOCAL, ENV_LOCAL], false, true)).not.toThrow();
   });

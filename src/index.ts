@@ -74,7 +74,10 @@ export function loadEnv(
   overwrite: boolean = false,
   reload: boolean = false,
 ) {
-  const filePaths = Array.isArray(filePath) ? filePath : [filePath];
+  const filePaths = Array.isArray(filePath) ? filePath : filePath ? [filePath] : [];
+  if (filePaths.length === 0) {
+    throw new Error('loadEnv: no file paths specified to load');
+  }
   filePaths.forEach(filePath => {
     ensureAbsolute(filePath);
     if (!reload && loadedEnvs.has(filePath)) {
