@@ -25,12 +25,12 @@ export type GetEnvFromOptions = {
   fallback?: string;
 };
 
-type Required = { require: true } & GetEnvFromOptions;
+type HasValue = ({ require: true } | { fallback: true }) & GetEnvFromOptions;
 
 const cachedEnv: { [key: string]: Record<string, string | undefined> } = {};
 const DEFAULT_OPTS = { require: true };
 
-export function getEnv(envVar: string, options?: Required): string;
+export function getEnv(envVar: string, options?: HasValue): string;
 export function getEnv(
   envVar: string,
   options?: GetEnvFromOptions
@@ -106,7 +106,7 @@ export function loadEnv(
 export function getEnvFrom(
   filePath: string,
   envVar: string,
-  options?: Required
+  options?: HasValue
 ): string;
 export function getEnvFrom(
   filePath: string,
