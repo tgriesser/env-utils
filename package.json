@@ -1,6 +1,6 @@
 {
   "name": "@tgriesser/env-utils",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Utilities for loading/retrieving env vars",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -37,5 +37,5 @@
       "json",
       "node"
     ]
-  }  
+  }
 }
