@@ -1,6 +1,6 @@
 {
   "name": "@tgriesser/env-utils",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Utilities for loading/retrieving env vars",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -17,12 +17,12 @@
     "dotenv": "^6.0.0"
   },
   "devDependencies": {
-    "jest": "^23.1.0",
-    "typescript": "^2.9.1",
-    "ts-jest": "^22.4.6",
+    "@types/dotenv": "^4.0.3",
     "@types/jest": "^23.0.2",
     "@types/node": "^10.3.2",
-    "@types/dotenv": "^4.0.3"
+    "jest": "^23.1.0",
+    "ts-jest": "^22.4.6",
+    "typescript": "^2.9.1"
   },
   "jest": {
     "transform": {
