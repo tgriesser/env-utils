@@ -1,0 +1,41 @@
+{
+  "name": "@tgriesser/env-utils",
+  "version": "1.0.0",
+  "description": "Utilities for loading/retrieving env vars",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "tsc",
+    "test": "jest ./test",
+    "clean": "rm -rf lib",
+    "prepublish": "yarn clean && yarn build && yarn test"
+  },
+  "author": "Tim Griesser",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^6.0.0"
+  },
+  "devDependencies": {
+    "jest": "^23.1.0",
+    "typescript": "^2.9.1",
+    "ts-jest": "^22.4.6",
+    "@types/jest": "^23.0.2",
+    "@types/node": "^10.3.2",
+    "@types/dotenv": "^4.0.3"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  }  
+}
