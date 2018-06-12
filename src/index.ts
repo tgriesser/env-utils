@@ -25,7 +25,7 @@ export type GetEnvFromOptions = {
   fallback?: string;
 };
 
-type HasValue = ({ require: true } | { fallback: true }) & GetEnvFromOptions;
+type HasValue = ({ require: true } | { fallback: string }) & GetEnvFromOptions;
 
 const cachedEnv: { [key: string]: Record<string, string | undefined> } = {};
 const DEFAULT_OPTS = { require: true };
