@@ -136,7 +136,7 @@ const getEnvVar = (
 ) => {
   const keyExists = envVar in fullEnv;
   if (!keyExists) {
-    if (options.fallback) {
+    if (typeof options.fallback !== 'undefined') {
       return options.fallback;
     }
     if (options.require !== false) {
@@ -149,7 +149,7 @@ const getEnvVar = (
     if (options.allowEmpty) {
       return value;
     }
-    if (options.fallback) {
+    if (typeof options.fallback !== 'undefined') {
       return options.fallback;
     }
     throw new Error(`${method}: Saw empty value for key ${envVar}`);
