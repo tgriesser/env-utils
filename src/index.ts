@@ -2,6 +2,8 @@ import fs from "fs";
 import dotenv from "dotenv";
 import path from "path";
 
+type MaybeFn<T> = T | (() => T)
+
 export type GetEnvFromOptions = {
   /**
    * Require the env variable exist, default true
@@ -22,10 +24,10 @@ export type GetEnvFromOptions = {
    *
    * @default undefined
    */
-  fallback?: string;
+  fallback?: MaybeFn<string>;
 };
 
-type HasValue = ({ require: true } | { fallback: string }) & GetEnvFromOptions;
+type HasValue = ({ require: true } | { fallback: MaybeFn<string> }) & GetEnvFromOptions;
 
 const cachedEnv: { [key: string]: Record<string, string | undefined> } = {};
 const DEFAULT_OPTS = { require: true };
@@ -104,7 +106,7 @@ export function loadEnv(
  *
  * @param filePath string
  * @param envVar string
- * @param options { require?: boolean; allowEmpty?: boolean; fallback?: string; }
+ * @param options { require?: boolean; allowEmpty?: boolean; fallback?: MaybeFn<string>; }
  */
 export function getEnvFrom(
   filePath: string,
@@ -137,7 +139,7 @@ const getEnvVar = (
   const keyExists = envVar in fullEnv;
   if (!keyExists) {
     if (typeof options.fallback !== 'undefined') {
-      return options.fallback;
+      return typeof options.fallback === 'string' ? options.fallback : options.fallback();
     }
     if (options.require !== false) {
       throw new Error(`${method}: Missing required key ${envVar}`);
@@ -150,7 +152,7 @@ const getEnvVar = (
       return value;
     }
     if (typeof options.fallback !== 'undefined') {
-      return options.fallback;
+      return typeof options.fallback === 'string' ? options.fallback : options.fallback();
     }
     throw new Error(`${method}: Saw empty value for key ${envVar}`);
   }

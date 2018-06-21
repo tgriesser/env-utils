@@ -34,9 +34,13 @@ describe("getEnv", () => {
     process.env.SET_EMPTY = "";
     expect(getEnv("SET_EMPTY", { allowEmpty: true })).toEqual("");
   });
-  it("should use default on empty value", () => {
+  it("should use fallback on empty value", () => {
     process.env.SET_EMPTY = "";
     expect(getEnv("SET_EMPTY", { fallback: "FALLBACK" })).toEqual("FALLBACK");
+  });
+  it("should use fallback fn on empty value", () => {
+    process.env.SET_EMPTY = "";
+    expect(getEnv("SET_EMPTY", { fallback: () => "FALLBACK" })).toEqual("FALLBACK");
   });
 });
 
@@ -94,6 +98,11 @@ describe("getEnvFrom", () => {
 
   it("should not fail on a non-existent key with a fallback", () => {
     expect(getEnvFrom(ENV_PATH, "MISSING", { fallback: "Fallback" })).toEqual(
+      "Fallback"
+    );
+  });
+  it("should not fail on a non-existent key with a fallback fn", () => {
+    expect(getEnvFrom(ENV_PATH, "MISSING", { fallback: () => "Fallback" })).toEqual(
       "Fallback"
     );
   });

@@ -15,7 +15,7 @@ getEnv(envVar: string, options?: GetEnvFromOptions): string | null
 {
   // If a value is specified, it is used in the case the value is not defined, 
   // or is empty (unless `allowEmpty` is `true`).
-  fallback?: string (default: undefined),
+  fallback?: string | (() => string) (default: undefined),
 
   // Whether the value is required, otherwise an error will be thrown.
   require?: boolean (default: true),
